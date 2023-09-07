@@ -1,0 +1,97 @@
+<html>
+	<head></head>
+	<body>
+		<div>
+			<h4>CC: Min Stack</h4>
+			<div>
+				<input type="text" id='minstackvalue' />
+				<div>
+					<hr />
+					<button id="msPush">Push Val</button>
+					<button id="msPop">Pop Val</button>
+					<button id="msShift">Shift Val</button>
+					<button id="msNew">Newest Val</button>
+					<button id="meOld">Oldest Val</button>
+					<button id="resetstackbutton">Reset Stack</button>
+				</div>
+				<p style="text-decoration: underline;">Current Stack values: </p>
+				<div id="msvalues"></div>
+			</div>
+		<div>
+	</body>
+</html>
+<script>
+	console.log('CC: Min - Stack. 4 de Septiembre del 2023');
+
+	let ms_array = [1, 2, 3, 4];
+
+	// Buttons on UI
+	const ms_push = document.getElementById('msPush');
+	const ms_pop = document.getElementById('msPop');
+	const ms_new = document.getElementById('msNew');
+	const ms_old = document.getElementById('meOld');
+	const ms_shift = document.getElementById('msShift');
+	const ms_reset = document.getElementById('resetstackbutton');
+
+	// Input value + Value View
+	const ms_values = document.getElementById('msvalues');
+	const ms_value = document.getElementById('minstackvalue');
+
+	// Listeners
+	ms_push.addEventListener('click', () => {
+		console.log('Push Button!');
+		if (ms_value.value === '') {
+			alert('Add some value to the input!');
+			return;
+		}
+		
+		ms_array.push(ms_value.value);
+		resetData();
+		ms_value.value = '';
+	});
+
+	ms_shift.addEventListener('click', () => {
+		console.log('Shift Button!');
+		ms_array.shift();
+		resetData();
+	});
+
+	ms_reset.addEventListener('click', () => {
+		console.log('Reset button!');
+		ms_array = [];
+		resetData();
+	});
+
+	ms_pop.addEventListener('click', () => {
+		console.log('Pop Button!');
+		ms_array.pop();
+		resetData();
+	});
+
+	ms_new.addEventListener('click', () => {
+		console.log('Newest button!');
+		alert(`Newest Value: ${ms_array[ms_array.length - 1]}`);
+	});
+
+	ms_old.addEventListener('click', () => {
+		console.log('Oldest button!');
+		alert(`Oldest Value: ${ms_array[0]}`);
+	});
+
+	// Utilities
+	function resetData() {
+		ms_values.innerHTML = '';
+
+		if (ms_array.length == 0) {
+			ms_values.innerHTML = 'No values in stack!';
+			return;
+		}
+
+		ms_array.forEach((el) => {
+			ms_values.innerHTML += `<p>${el}</p>`;
+		});
+	}
+
+	// Init methods
+	resetData(); 
+</script>
